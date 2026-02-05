@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наша история</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+    
+    <!-- Hero Section - первый экран на всю высоту -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src="images/hero.jpg" alt="Hero" class="hero-img" />
+            <div class="hero-text-container">
+                <h1 class="hero-rotating-text" id="heroRotatingText"></h1>
+            </div>
+        </div>
+        <div class="hero-link-container">
+            <a href="#" class="hero-link" id="heroLink">конечно может поменяться</a>
+        </div>
+    </section>
+
+    <div id="app">
+        <!-- Step 0: Menu Screen -->
+        <div id="step0" class="step active">
+            <div class="menu-container">
+                <h1 class="menu-title">Наша история</h1>
+                <div class="chapters-layout">
+                    <div class="chapters-list">
+                        <button class="chapter-card" data-step="4">Как проходить это</button>
+                        <button class="chapter-card" data-step="1">Вступление</button>
+                        <button class="chapter-card" data-step="2">Вопросы</button>
+                        <button class="chapter-card" data-step="5">Письмо</button>
+                        <button class="chapter-card" data-step="6">Общее</button>
+                        <button class="chapter-card" data-step="7">Переживания</button>
+                        <button class="chapter-card" data-step="8">Требования чтобы расти</button>
+                    </div>
+                    <div class="side-3d">
+                        <!-- Романтичная 3D модель -->
+                        <!-- 
+                        ВАРИАНТЫ МОДЕЛЕЙ (замените src на один из вариантов):
+                        
+                        1. Локальный файл (когда создадите свою модель):
+                           src="models/couple.glb"
+                        
+                        2. Модель из Sketchfab (найдите романтичную модель пары):
+                           src="https://ваш-url-из-sketchfab.glb"
+                        
+                        3. Временная модель сердца (пока не создадите свою):
+                           Используйте простую геометрическую модель или placeholder
+                        
+                        РЕКОМЕНДАЦИИ:
+                        - Найдите модель на Sketchfab.com (фильтр: Free, Downloadable, GLB format)
+                        - Или создайте модель через AI (например, Luma AI, Rodin, или другие инструменты)
+                        - Сохраните файл как .glb и поместите в папку models/
+                        -->
+                        <model-viewer
+                            src="kiss.glb"
+                            alt="3D модель пары"
+                            auto-rotate
+                            camera-controls
+                            disable-zoom
+                            style="width: 100%; height: 100%;"
+                            loading="lazy"
+                            environment-image="neutral"
+                            shadow-intensity="1"
+                            exposure="1">
+                            <!-- Placeholder если модель не загрузилась -->
+                           
+                        </model-viewer>
+                    </div>
+                </div>
+                <div id="progressToast" class="progress-toast"></div>
+                <div id="heartsAnimation" class="hearts-animation"></div>
+                <footer class="menu-footer">
+                    <p class="footer-text">срок годности данных мыслей ∞</p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Step 1: Video Screen -->
+        <div id="step1" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h1>начну с того, что я тебя люблю</h1>
+                <div class="video-wrapper" data-youtube="https://www.youtube.com/embed/v6ABp5eF5jA" data-preview="images/intro-poster.jpg" data-target-id="videoPlayer">
+                    <button class="video-preview" type="button" aria-label="Смотреть видео">
+                        <img class="video-preview__img" alt="Превью видео">
+                        <span class="video-preview__play" aria-hidden="true"></span>
+                    </button>
+                    <iframe class="video-iframe" title="YouTube video player" allowfullscreen></iframe>
+                    <div class="video-fallback">
+                        <a class="yt-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+                    </div>
+                </div>
+                <button id="continueBtn" disabled>Продолжить</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Quiz Screen -->
+        <div id="step2" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2 id="questionText"></h2>
+                <div id="optionsContainer">
+                    <!-- Multiple-choice option buttons will be dynamically inserted here -->
+                </div>
+                <button id="submitQuizBtn" disabled>Ответить</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Final Message Screen -->
+        <div id="step3" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2 id="finalMessage"></h2>
+                <button id="restartBtn">Идем дальше!❤️‍🔥</button>
+            </div>
+        </div>
+
+        <!-- Step 4: How to Pass This (Как проходить это) -->
+        <div id="step4" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>Как проходить это</h2>
+                <div class="text-content">
+                    <!-- Вставьте здесь ваши правила и рекомендации -->
+                    <p>чтобы прохождение было максимально приятным и запоминающимся,следуй следующим правилам.</p>
+                    <p>1. читай по моим рекомендациям, как только прочитала, жми на кнопку "продолжить"</p>
+                    <p>2. будь искренней, не стесняйся говорить о своих чувствах и мыслях, даже если они кажутся странными</p>
+                    <p>3. целуйся, как только захочется, мне важна твоя любовь</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Letter (Письмо) -->
+        <div id="step5" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>Письмо</h2>
+                <div class="letter-content">
+                    <!-- Вставьте здесь текст вашего письма -->
+                    <p>крошик, если ты это читаешь значит, мы всё ещё где-то на пути друг к другу и стремимся к тому чтобы быть вместе счастливыми
+                        
+                        я просто хочу, чтобы ты знала. Каким бы ни был этот путь, я рад, что он ведёт к тебе
+                        
+                        не обещаю, что будет легко, но обещаю, что буду честным,
+                        
+                        я верю, что мы можем создать что-то настоящее, научивишись доверять завово</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: State (Состояние) -->
+        <div id="step6" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>Общее</h2>
+                <!-- Замените src на путь к вашему видео -->
+                <div class="video-wrapper" data-youtube="https://youtu.be/D31p5Y3vqTc" data-preview="images/intro-poster.jpg" data-target-id="stateVideo">
+                    <button class="video-preview" type="button" aria-label="Смотреть видео">
+                        <img class="video-preview__img" alt="Превью видео">
+                        <span class="video-preview__play" aria-hidden="true"></span>
+                    </button>
+                    <iframe class="video-iframe" title="YouTube video player" allowfullscreen></iframe>
+                    <div class="video-fallback">
+                        <a class="yt-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Perceptions (Переживания) -->
+        <div id="step7" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>Переживания</h2>
+                <div class="text-content">
+                    <!-- Вставьте здесь текст о переживаниях -->
+                    <p>это видео больше про мои переживания, про мои сложности в "нас", возможно, оно вызовет сложный разговор.</p>
+                    <p>иди дальше, если ты готова сейчас, но я бы хотел в любом случае, чтобы мы посомтрели это вместе ❤️.</p>
+                </div>
+                <button class="perceptions-video-btn" data-step="9">да я хочу сейчас посмотреть</button>
+            </div>
+        </div>
+
+        <!-- Step 8: Requirements to Grow (Требования чтобы расти) -->
+        <div id="step8" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>Требования чтобы расти</h2>
+                <!-- Замените src на путь к вашему видео -->
+                <div class="video-wrapper" data-youtube="https://www.youtube.com/embed/r_AYMs4IUXc" data-preview="images/requirements-poster.jpg" data-target-id="requirementsVideo">
+                    <button class="video-preview" type="button" aria-label="Смотреть видео">
+                        <img class="video-preview__img" alt="Превью видео">
+                        <span class="video-preview__play" aria-hidden="true"></span>
+                    </button>
+                    <iframe class="video-iframe" title="YouTube video player" allowfullscreen></iframe>
+                    <div class="video-fallback">
+                        <a class="yt-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 9: Perceptions Video (Видео про переживания) -->
+        <div id="step9" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>Переживания</h2>
+                <!-- Замените src на путь к вашему видео про переживания -->
+                <div class="video-wrapper" data-youtube="https://youtu.be/XX86DmBccDw" data-preview="images/perceptions-poster.jpg" data-target-id="perceptionsVideo">
+                    <button class="video-preview" type="button" aria-label="Смотреть видео">
+                        <img class="video-preview__img" alt="Превью видео">
+                        <span class="video-preview__play" aria-hidden="true"></span>
+                    </button>
+                    <iframe class="video-iframe" title="YouTube video player" allowfullscreen></iframe>
+                    <div class="video-fallback">
+                        <a class="yt-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 10: Hero Link Video (Видео из hero-ссылки) -->
+        <div id="step10" class="step">
+            <button class="back-to-menu-btn" data-step="0">← Назад в меню</button>
+            <div class="content-wrapper">
+                <h2>КАЖЕТСЯ НАШЛИ</h2>
+                <!-- Замените src на путь к вашему видео (отличному от вступительного) -->
+                <div class="video-wrapper" data-youtube="https://youtu.be/c8-qq1080dc" data-preview="images/hero-link-poster.jpg" data-target-id="heroLinkVideo">
+                    <button class="video-preview" type="button" aria-label="Смотреть видео">
+                        <img class="video-preview__img" alt="Превью видео">
+                        <span class="video-preview__play" aria-hidden="true"></span>
+                    </button>
+                    <iframe class="video-iframe" title="YouTube video player" allowfullscreen></iframe>
+                    <div class="video-fallback">
+                        <a class="yt-link" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
